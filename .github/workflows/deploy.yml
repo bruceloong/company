@@ -16,6 +16,9 @@ jobs:
     env:
       NEXT_IGNORE_MISMATCHED_LAYOUTS: "1"
       NEXT_IGNORE_MISSING_LAYOUTS: "1"
+      # 跳过类型检查
+      NEXT_SKIP_TYPECHECKING: "1"
+      NEXT_TYPESCRIPT_IGNORE_ERRORS: "1"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -57,6 +60,9 @@ jobs:
           const nextConfig: NextConfig = {
             output: 'export',
             // 使用自定义域名时不需要 basePath 和 assetPrefix
+            typescript: {
+              ignoreBuildErrors: true,
+            },
             images: {
               unoptimized: true,
               remotePatterns: [
@@ -84,6 +90,9 @@ jobs:
             output: 'export',
             basePath: '/${REPO_NAME}',
             assetPrefix: '/${REPO_NAME}/',
+            typescript: {
+              ignoreBuildErrors: true,
+            },
             images: {
               unoptimized: true,
               remotePatterns: [

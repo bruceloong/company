@@ -1,0 +1,133 @@
+{
+  "meta": {
+    "title": "Corporate Website",
+    "description": "A modern corporate website built with Next.js and Tailwind CSS"
+  },
+  "header": {
+    "logo": "Company",
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "products": "Products",
+    "testimonials": "Testimonials",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Building the Future with Innovation",
+    "subtitle": "We provide cutting-edge solutions for businesses looking to transform their digital presence",
+    "contactButton": "Contact Us",
+    "learnMoreButton": "Learn More"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Who We Are",
+    "imageAlt": "Our team working together",
+    "description1": "Founded in 2010, our company has been at the forefront of technological innovation, helping businesses transform their digital presence and achieve their goals.",
+    "description2": "With a team of experienced professionals, we are committed to delivering high-quality solutions that meet the unique needs of our clients.",
+    "feature1": "Expert Team",
+    "feature2": "Quality Assurance",
+    "feature3": "Innovative Solutions",
+    "feature4": "24/7 Support"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "What We Offer",
+    "service1": {
+      "title": "Web Development",
+      "description": "Custom websites and web applications built with the latest technologies"
+    },
+    "service2": {
+      "title": "Mobile Development",
+      "description": "Native and cross-platform mobile applications for iOS and Android"
+    },
+    "service3": {
+      "title": "E-commerce Solutions",
+      "description": "Complete online store solutions with payment integration and inventory management"
+    },
+    "service4": {
+      "title": "Digital Marketing",
+      "description": "SEO, social media marketing, and content strategy to grow your online presence"
+    }
+  },
+  "products": {
+    "title": "Our Products",
+    "subtitle": "Innovative Solutions for Modern Businesses",
+    "learnMoreButton": "Learn More",
+    "product1": {
+      "title": "Enterprise CRM",
+      "description": "A comprehensive customer relationship management system designed for large enterprises"
+    },
+    "product2": {
+      "title": "Analytics Dashboard",
+      "description": "Real-time data visualization and analytics platform for business intelligence"
+    },
+    "product3": {
+      "title": "Cloud Storage",
+      "description": "Secure and scalable cloud storage solution for businesses of all sizes"
+    }
+  },
+  "testimonials": {
+    "title": "Client Testimonials",
+    "subtitle": "What Our Clients Say About Us",
+    "testimonial1": {
+      "name": "John Smith",
+      "position": "CEO",
+      "company": "Tech Innovations",
+      "content": "Working with this team has been an incredible experience. They delivered our project on time and exceeded our expectations."
+    },
+    "testimonial2": {
+      "name": "Sarah Johnson",
+      "position": "Marketing Director",
+      "company": "Global Solutions",
+      "content": "The website they built for us has significantly increased our online presence and lead generation. Highly recommended!"
+    },
+    "testimonial3": {
+      "name": "Michael Brown",
+      "position": "CTO",
+      "company": "Future Systems",
+      "content": "Their technical expertise and attention to detail are impressive. They helped us solve complex problems with elegant solutions."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in Touch with Our Team",
+    "infoTitle": "Contact Information",
+    "formTitle": "Send Us a Message",
+    "address": {
+      "title": "Our Address",
+      "line1": "123 Business Street",
+      "line2": "New York, NY 10001"
+    },
+    "phone": {
+      "title": "Phone Number",
+      "number": "+1 (123) 456-7890"
+    },
+    "email": {
+      "title": "Email Address",
+      "address": "info@company.com"
+    },
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "successMessage": "Your message has been sent successfully. We'll get back to you soon!",
+      "errorMessage": "There was an error sending your message. Please try again later."
+    }
+  },
+  "footer": {
+    "logo": "Company",
+    "description": "We provide innovative solutions for businesses looking to transform their digital presence.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "newsletter": "Newsletter",
+    "newsletterText": "Subscribe to our newsletter to receive updates and news.",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe",
+    "address": "123 Business Street, New York, NY 10001",
+    "phone": "+1 (123) 456-7890",
+    "email": "info@company.com",
+    "copyright": "Company. All rights reserved."
+  }
+}

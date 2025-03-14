@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
   // 如果是 GitHub Pages 部署，设置 basePath 和 assetPrefix
   basePath: isGitHubPages ? `/${repo}` : "",
   assetPrefix: isGitHubPages ? `/${repo}/` : "",
+  // 添加实验性配置以忽略布局错误
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+    // 如果有其他实验性配置，可以在这里添加
+  },
   images: {
     unoptimized: true, // 对于静态导出，需要禁用图片优化
     remotePatterns: [

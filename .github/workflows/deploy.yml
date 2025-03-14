@@ -6,53 +6,96 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         with:
-          node-version: "18"
-          cache: "npm"
+          version: 8
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          static_site_generator: next
+          node-version: "20"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
-      - name: Build with Next.js
-        run: npm run build
+      - name: Configure Next.js for GitHub Pages
+        run: |
+          echo "Building for GitHub Pages..."
+          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+          REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d '/' -f 2)
+          echo "REPO_NAME: $REPO_NAME"
 
-      - name: Static HTML export with Next.js
-        run: npx next export
+          # 检查是否存在自定义域名文件
+          if [ -f "public/CNAME" ]; then
+            echo "检测到自定义域名配置"
+            CUSTOM_DOMAIN=$(cat public/CNAME)
+            echo "自定义域名: $CUSTOM_DOMAIN"
+            
+            # 为自定义域名创建 Next.js 配置
+            cat > next.config.ts << EOL
+          import type { NextConfig } from "next";
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./out
+          const nextConfig: NextConfig = {
+            output: 'export',
+            // 使用自定义域名时不需要 basePath 和 assetPrefix
+            images: {
+              unoptimized: true,
+            },
+          };
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+          export default nextConfig;
+          EOL
+          else
+            echo "使用 GitHub Pages 默认域名"
+            # 创建适用于 GitHub Pages 的 Next.js 配置
+            cat > next.config.ts << EOL
+          import type { NextConfig } from "next";
+
+          const nextConfig: NextConfig = {
+            output: 'export',
+            basePath: '/${REPO_NAME}',
+            assetPrefix: '/${REPO_NAME}/',
+            images: {
+              unoptimized: true,
+            },
+          };
+
+          export default nextConfig;
+          EOL
+          fi
+
+          cat next.config.ts
+
+      - name: Build
+        run: pnpm build
+
+      - name: Add .nojekyll file
+        run: |
+          touch out/.nojekyll
+          # 如果存在 CNAME 文件，复制到 out 目录
+          if [ -f "public/CNAME" ]; then
+            cp public/CNAME out/
+            echo "已复制 CNAME 文件到 out 目录"
+          fi
+          echo "Contents of out directory:"
+          ls -la out/
+
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+          branch: gh-pages
+          clean: true

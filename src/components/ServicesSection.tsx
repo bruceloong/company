@@ -5,12 +5,6 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  FaLaptopCode,
-  FaCloud,
-  FaMobileAlt,
-  FaChartLine,
-} from "react-icons/fa";
-import {
   FiMonitor,
   FiSmartphone,
   FiShoppingBag,

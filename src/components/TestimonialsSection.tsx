@@ -131,7 +131,7 @@ export default function TestimonialsSection() {
                   ))}
                 </div>
                 <p className="text-gray-600 mb-6 italic">
-                  "{testimonial.content}"
+                  {testimonial.content}
                 </p>
                 <div className="flex items-center">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">

@@ -4,13 +4,6 @@ import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  FaMapMarkerAlt,
-  FaPhone,
-  FaEnvelope,
-  FaCheck,
-  FaExclamationTriangle,
-} from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 
@@ -86,6 +79,7 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus("submitting");
+    console.log(formData);
 
     // Here you would normally integrate with a service like EmailJS
     // For demo purposes, we'll simulate a successful submission
@@ -94,6 +88,7 @@ export default function ContactSection() {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setFormStatus("success");
     } catch (error) {
+      console.error(error);
       setFormStatus("error");
     }
   };
@@ -171,6 +166,7 @@ export default function ContactSection() {
                 <input
                   type="text"
                   id="name"
+                  onChange={handleChange}
                   className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
@@ -186,6 +182,7 @@ export default function ContactSection() {
                 <input
                   type="email"
                   id="email"
+                  onChange={handleChange}
                   className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
@@ -203,6 +200,7 @@ export default function ContactSection() {
                   rows={4}
                   className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
+                  onChange={handleChange}
                 ></textarea>
               </div>
 

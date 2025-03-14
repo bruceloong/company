@@ -114,14 +114,39 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Add .nojekyll file
+      - name: Add .nojekyll file and root redirect
         run: |
           touch out/.nojekyll
+
           # 如果存在 CNAME 文件，复制到 out 目录
           if [ -f "public/CNAME" ]; then
             cp public/CNAME out/
             echo "已复制 CNAME 文件到 out 目录"
           fi
+
+          # 创建根路径重定向文件
+          if [ ! -f "out/index.html" ]; then
+            echo "创建根路径重定向文件..."
+            cat > out/index.html << EOL
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <meta http-equiv="refresh" content="0;url=en">
+              <title>Redirecting to default language</title>
+            </head>
+            <body>
+              <script>
+                window.location.href = "en";
+              </script>
+              <p>If you are not redirected automatically, follow this <a href="en">link</a>.</p>
+            </body>
+          </html>
+          EOL
+          else
+            echo "根路径 index.html 已存在，跳过创建..."
+          fi
+
           echo "Contents of out directory:"
           ls -la out/
 

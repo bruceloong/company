@@ -24,7 +24,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  const { locale } = await params;
+  const locale = params.locale;
 
   // 验证语言环境
   if (!locales.includes(locale)) {
@@ -50,7 +50,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const { locale } = await params;
+  const locale = params.locale;
 
   // 验证语言环境
   if (!locales.includes(locale)) {
